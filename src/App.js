@@ -31,23 +31,33 @@ function App() {
     };
 
     // spread operator, cria um novo array de atividades e faz o push de atividade para esse novo array.
+    // deve ser criado um novo array de atividades, se não é criado um array dentro de outro array
     setAtividades([...atividades,  {...atividade}]);
   }
 
   return (
     <>
-      <form>  
-        <input id="id" type="text" placeholder='id'/>
-        <input id="descricao" type="text" placeholder='descricao'/>
-        <button onClick={addAtividade}>+ Atividade</button>
-      </form>
-      
-      <div className="mt-3">
-          <ul className="list-group"> {atividades.map(x => (
-                <li key={x.id} className="list-group-item">{x.id} - {x.descricao}</li>
-            ))}        
-          </ul>
+    <form className='row g-3'>
+      <div className="col-md-6">
+          <label htmlFor="inputEmail4">Id</label>
+          <input id="id" type="text" className="form-control" placeholder="Id" />
       </div>
+      <div className="col-md-6">
+        <label htmlFor="inputEmail4"> Descrição</label>
+        <input id="descricao" type="text" className="form-control" placeholder="Descrição" />
+      </div>
+      <hr />
+      <div className="col-12">
+        <button className="btn btn-outline-success" onClick={addAtividade}>+ Atividade</button>
+      </div>
+    </form>
+
+    <div className="mt-3">
+      <ul className="list-group"> {atividades.map(x => (
+            <li key={x.id} className="list-group-item">{x.id} - {x.descricao}</li>
+        ))}        
+      </ul>
+    </div>
     </>
   );
 }
