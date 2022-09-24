@@ -4,7 +4,7 @@ import ListaSuspensa from "../ListaSuspensa"
 import Botao from "../Botao"
 import { useState } from "react"
 
-const Formulario = () => {
+const Formulario = (props) => {
 
     const [nome, setNome] = useState("")
     const [cargo, setCargo] = useState("")
@@ -19,11 +19,16 @@ const Formulario = () => {
         "Mobile",
         "Inovação e Gestão"
     ]
-
     const aoSalvar = (e) => {
         e.preventDefault()
-        console.log("Form subetido:", nome, cargo, imagem, time)
+        props.aoCadastrarColaborador({
+            Nome: nome,
+            Cargo: cargo,
+            Imagem: imagem,
+            Time: time
+        })
     }
+
     return (
         <section className="formulario">
             <form onSubmit={aoSalvar}>
