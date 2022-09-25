@@ -10,23 +10,18 @@ const Formulario = (props) => {
     const [cargo, setCargo] = useState("")
     const [imagem, setImagem] = useState("")
     const [time, setTime] = useState("")
-    const times = [
-        "Programação",
-        "Front-End",
-        "Data Science",
-        "Devops",
-        "UX e Design",
-        "Mobile",
-        "Inovação e Gestão"
-    ]
     const aoSalvar = (e) => {
         e.preventDefault()
         props.aoCadastrarColaborador({
-            Nome: nome,
-            Cargo: cargo,
-            Imagem: imagem,
-            Time: time
+            nome: nome,
+            cargo: cargo,
+            imagem: imagem,
+            time: time
         })
+        setNome("")
+        setCargo("")
+        setImagem("")
+        setTime("")
     }
 
     return (
@@ -56,7 +51,7 @@ const Formulario = (props) => {
                 <ListaSuspensa
                     obrigatorio={true}
                     label="Time"
-                    itens={times}
+                    itens={props.times}
                     valor={time}
                     aoAlterado={valor => setTime(valor)}
                 />

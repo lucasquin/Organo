@@ -5,40 +5,41 @@ import Times from './componentes/Times';
 
 function App() {
   const [colaboradores, setColaboradores] = useState([])
-  const aoNovoColaborador = (colaborador) => {setColaboradores([...colaboradores, colaborador])}
+  const aoNovoColaborador = (colaborador) => {
+    setColaboradores([...colaboradores, colaborador])}
   const times = [
     {
-      Nome: "Programação",
+      nome: "Programação",
       corPrimaria: "#57C278",
       corSecundaria: "#D9F7E9"
     },
     {
-      Nome: "Front-End",
+      nome: "Front-End",
       corPrimaria: "#82CFFA",
       corSecundaria: "#E8F8FF"
     },
     {
-      Nome: "Data Science",
+      nome: "Data Science",
       corPrimaria: "#A6D157",
       corSecundaria: "#F0F8E2"
     },
     {
-      Nome: "Devops",
+      nome: "Devops",
       corPrimaria: "#E06B69",
       corSecundaria: "#FDE7E8"
     },
     {
-      Nome: "UX e Design",
+      nome: "UX e Design",
       corPrimaria: "#DB6EBF",
       corSecundaria: "#FAE9F5"
     },
     {
-      Nome: "Mobile",
+      nome: "Mobile",
       corPrimaria: "#FFBA05",
       corSecundaria: "#FFF5D9"
     },
     {
-      Nome: "Inovação e Gestão",
+      nome: "Inovação e Gestão",
       corPrimaria: "#FF8A29",
       corSecundaria: "#FFEEDF"
     }
@@ -47,8 +48,14 @@ function App() {
   return (
     <>
        <Banner />
-       <Formulario aoCadastrarColaborador={colaborador => aoNovoColaborador(colaborador)}/>
-       {times.map(time => <Times  key={time.Nome} nome={time.Nome} corPrimaria={time.corPrimaria} corSecundaria={time.corSecundaria}/>)} 
+       <Formulario times={times.map(time => time.nome)} aoCadastrarColaborador={colaborador => aoNovoColaborador(colaborador)}/>
+       {times.map(time => <Times  
+                          key={time.nome}
+                          nome={time.nome}
+                          corPrimaria={time.corPrimaria}
+                          corSecundaria={time.corSecundaria}
+                          colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)}
+                          />)} 
     </>
   );
 }
